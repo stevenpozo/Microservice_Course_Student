@@ -58,8 +58,8 @@ const CourseForm = () => {
         const { name, value } = e.target;
         setCourse({
             ...course,
-            [name]: value,
-        });
+            [name]: name === 'credits' ? Number(value) : value,
+          });
     };
 
     const handleCancel = () => {
@@ -79,8 +79,9 @@ const CourseForm = () => {
             <h2>{id ? 'Edit Course' : 'Add Course'}</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Name:</label>
+                    <label htmlFor="name">Name:</label>
                     <input
+                        id="name"
                         type="text"
                         name="name"
                         value={course.name}
@@ -89,8 +90,9 @@ const CourseForm = () => {
                     {errors.name && <div className="error">{errors.name}</div>}
                 </div>
                 <div>
-                    <label>Description:</label>
+                    <label htmlFor="description">Description:</label>
                     <input
+                        id="description"
                         type="text"
                         name="description"
                         value={course.description}
@@ -99,8 +101,9 @@ const CourseForm = () => {
                     {errors.description && <div className="error">{errors.description}</div>}
                 </div>
                 <div>
-                    <label>Credits:</label>
+                    <label htmlFor="credits">Credits:</label>
                     <input
+                        id="credits"
                         type="number"
                         name="credits"
                         value={course.credits}
