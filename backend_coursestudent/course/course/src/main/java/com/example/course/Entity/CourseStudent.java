@@ -13,12 +13,12 @@ public class CourseStudent {
 
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
-    @JsonBackReference // Indica la parte "referenciada" de la relación
+    @JsonBackReference
     private Course course;
 
-    private Long studentId; // ID of the student from the Students microservice
+    private Long studentId;
 
-    private LocalDate enrollmentDate = LocalDate.now(); // Example additional attribute
+    private LocalDate enrollmentDate = LocalDate.now();
 
     // Getters and Setters
 

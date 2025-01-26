@@ -70,16 +70,13 @@ public class CourseService {
         Course course = courseRepository.findById(courseId)
                 .orElseThrow(() -> new RuntimeException("Course not found"));
 
-        // Verify the student exists in the Students microservice
         studentFeignClient.getStudent(studentId);
 
-        // Check if the student is already enrolled
         Optional<CourseStudent> existingEnrollment = courseStudentRepository.findByCourseIdAndStudentId(courseId, studentId);
         if (existingEnrollment.isPresent()) {
             throw new RuntimeException("Student is already enrolled in this course");
         }
 
-        // Create the CourseStudent relationship
         CourseStudent courseStudent = new CourseStudent();
         courseStudent.setCourse(course);
         courseStudent.setStudentId(studentId);
@@ -89,15 +86,12 @@ public class CourseService {
 
     // Get all students enrolled in a specific course
     public List<Student> getStudentsInCourse(Long courseId) {
-        // Obtenemos todas las relaciones CourseStudent para el curso
         List<CourseStudent> courseStudents = courseStudentRepository.findByCourseId(courseId);
 
-        // Usamos Feign Client para obtener los detalles completos de cada estudiante
         List<Student> students = new ArrayList<>();
         for (CourseStudent courseStudent : courseStudents) {
             Long studentId = courseStudent.getStudentId();
-            // Obtener el estudiante desde el Feign Client y extraer solo el body
-            Student student = studentFeignClient.getStudent(studentId).getBody(); // .getBody() obtiene el estudiante
+            Student student = studentFeignClient.getStudent(studentId).getBody();
 
             if (student != null) {
                 students.add(student);
@@ -107,28 +101,20 @@ public class CourseService {
     }
 
     public List<Student> getStudentsNotInCourse(Long courseId) {
-        // Obtener todos los estudiantes
         List<Student> allStudents = studentFeignClient.getAllStudents();
 
-        // Obtener los estudiantes ya inscritos en el curso
         List<Student> enrolledStudents = getStudentsInCourse(courseId);
 
-        // Obtener los IDs de los estudiantes inscritos
         List<Long> enrolledStudentIds = enrolledStudents.stream()
-                .map(Student::getId) // Extraer los IDs
+                .map(Student::getId)
                 .toList();
 
-        // Filtrar estudiantes no inscritos
         List<Student> notEnrolledStudents = allStudents.stream()
                 .filter(student -> !enrolledStudentIds.contains(student.getId()))
                 .toList();
 
         return notEnrolledStudents;
     }
-
-
-
-
 
     // Remove a student from a course
     public void removeStudentFromCourse(Long courseId, Long studentId) {
