@@ -1,0 +1,134 @@
+/* src/components/HomePage.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+.home-container {
+    text-align: center;
+    padding: 50px;
+    background-image: url('https://media.istockphoto.com/id/1278507736/vector/vector-frame-back-to-school-with-education-doodle-icon-symbols-on-green-chalkboard-eps10.jpg?s=612x612&w=0&k=20&c=tJfcltxqhsRJnl5ig7tMpM7UhrFJyu_Rg-J52Hv0Mis='); 
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.home-container h1 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    animation: wave 2s infinite ease-in-out; /* Animación tipo ola */
+}
+
+/* Animación de ola */
+@keyframes wave {
+    0% {
+        transform: translateY(0);
+    }
+    20% {
+        transform: translateY(-10px);
+    }
+    40% {
+        transform: translateY(10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+    80% {
+        transform: translateY(5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card {
+    width: 220px;
+    height: 220px;
+    background-color: rgb(12, 53, 2);;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column; /* Alinea los elementos en columna */
+    justify-content: center; /* Centra los elementos verticalmente */
+    align-items: center; /* Centra los elementos horizontalmente */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease-in-out, background-color 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    background-color: rgba(76, 175, 80, 1);
+}
+
+.card h2 {
+    font-size: 18px;
+    margin: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    text-align: center;
+}
+
+.card:hover h2 {
+    transform: translateY(-10px);
+    opacity: 0.8;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.6s ease;
+    opacity: 0;
+}
+
+.card:hover::before {
+    width: 0%;
+    height: 0%;
+    opacity: 1;
+}
+
+.card-container h2 {
+    font-family: 'Roboto', sans-serif;
+}
+
+.card-icon {
+    font-size: 40px; /* Tamaño del ícono */
+    margin-bottom: 20px; /* Espacio entre el ícono y el texto */
+    transition: transform 0.3s ease; /* Para que tenga animación en hover */
+}
+
+/* Efecto de animación en el ícono */
+.card:hover .card-icon {
+    transform: scale(1.2); /* Aumenta el tamaño del ícono al hacer hover */
+}

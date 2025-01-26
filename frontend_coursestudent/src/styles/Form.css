@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.form-container {
+    position: relative;
+    padding: 10px;
+    background-image: url('https://media.istockphoto.com/id/1278507736/vector/vector-frame-back-to-school-with-education-doodle-icon-symbols-on-green-chalkboard-eps10.jpg?s=612x612&w=0&k=20&c=tJfcltxqhsRJnl5ig7tMpM7UhrFJyu_Rg-J52Hv0Mis='); /* Fondo para el formulario */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    color: rgb(5, 5, 5);
+    z-index: 1;
+}
+
+.form-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    filter: blur(4px); /* Desenfoque en el fondo */
+    z-index: -1;
+}
+
+.form-container h2 {
+    color: rgb(6, 37, 32);
+    font-size: 36px;
+    margin-bottom: 40px;
+    margin-left: 630px;
+    text-shadow: 2px 2px 4px rgba(12, 33, 3, 0.6);
+    animation: wave 2s infinite ease-in-out; /* Animación tipo ola */
+}
+
+/* Animación de ola */
+@keyframes wave {
+    0% {
+        transform: translateY(0);
+    }
+    20% {
+        transform: translateY(-10px);
+    }
+    40% {
+        transform: translateY(10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+    80% {
+        transform: translateY(5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.form-container form {
+    background-color: rgba(194, 208, 190, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-container form div {
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    margin-top: 5px;
+}
+
+.form-container input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+.form-container .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.form-container button {
+    padding: 10px 20px;
+    background-color: rgb(12, 53, 2);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.form-container button:hover {
+    background-color: #45a049;
+}
+
+.form-container .cancel-button {
+    background-color: rgb(53, 2, 6);
+    margin-top: 10px;
+}
+
+.form-container .cancel-button:hover {
+    background-color: #b91b1b;
+}
+
+/* Notificación en la parte superior derecha con recuadro dinámico */
+.form-container .notification {
+    position: fixed;
+    top: 20px; /* Distancia desde la parte superior */
+    right: 20px; /* Distancia desde la parte derecha */
+    background-color: rgba(255, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 0;
+    display: inline-block; /* Hace que el recuadro solo ocupe el tamaño del texto */
+    opacity: 1;
+    animation: fadeOut 5s forwards; /* Animación para desaparecer después de 5 segundos */
+}
+
+/* Animación para que la notificación desaparezca */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+

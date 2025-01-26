@@ -1,0 +1,149 @@
+/* src/components/ListPage.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+.list-container {
+    position: relative; /* Necesario para que el ::after se posicione bien */
+    text-align: center;
+    padding: 50px;
+    background-image: url('https://media.istockphoto.com/id/1278507736/vector/vector-frame-back-to-school-with-education-doodle-icon-symbols-on-green-chalkboard-eps10.jpg?s=612x612&w=0&k=20&c=tJfcltxqhsRJnl5ig7tMpM7UhrFJyu_Rg-J52Hv0Mis='); 
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    color: white;
+    z-index: 1; /* Asegura que el contenido se quede encima */
+}
+
+.list-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit; /* Hereda el background-image */
+    filter: blur(4px); /* Desenfoque */
+    z-index: -1; /* Coloca el desenfoque detrás del contenido */
+}
+
+
+.list-container h2 {
+    color: rgb(6, 37, 32);
+    font-size: 36px;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(12, 33, 3, 0.6);
+    animation: wave 2s infinite ease-in-out; /* Animación tipo ola */
+}
+
+.list-container a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.list-container a:hover {
+    text-decoration: underline;
+}
+
+/* Animación de ola */
+@keyframes wave {
+    0% {
+        transform: translateY(0);
+    }
+    20% {
+        transform: translateY(-10px);
+    }
+    40% {
+        transform: translateY(10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+    80% {
+        transform: translateY(5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.table-container {
+    margin-top: 30px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+}
+
+th {
+    background-color: rgb(12, 53, 2);
+    color: white;
+    font-weight: bold;
+}
+
+td {
+    background-color: #f4f4f4;
+    transition: background-color 0.3s ease;
+}
+
+td:hover {
+    background-color: rgba(76, 175, 80, 0.2);
+}
+
+button {
+    padding: 8px 16px;
+    background-color: rgb(12, 53, 2);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end; /* Coloca los botones al lado izquierdo */
+    margin-bottom: 20px;
+}
+
+.mb-4 {
+    margin-bottom: 16px;
+    margin-right: 1220px;
+    background-color: rgb(64, 2, 2);
+}
+
+.btn_edit{
+    background-color: rgb(12, 53, 2);
+    margin-right: 10px;
+}
+
+.btn_delete{
+    background-color: rgb(53, 2, 6);
+}
