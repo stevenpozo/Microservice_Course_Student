@@ -87,10 +87,11 @@ const StudentForm = () => {
             )}
             <h2>{id ? 'Edit Student' : 'Add Student'}</h2>
             
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} aria-label="Student form">
                 <div>
-                    <label>First Name:</label>
+                    <label htmlFor="first_name">First Name:</label>
                     <input
+                        id="first_name"
                         type="text"
                         name="first_name"
                         value={student.first_name}
@@ -99,8 +100,9 @@ const StudentForm = () => {
                     {errors.first_name && <div className="error">{errors.first_name}</div>}
                 </div>
                 <div>
-                    <label>Last Name:</label>
+                    <label htmlFor="last_name">Last Name:</label>
                     <input
+                        id="last_name"
                         type="text"
                         name="last_name"
                         value={student.last_name}
@@ -109,8 +111,9 @@ const StudentForm = () => {
                     {errors.last_name && <div className="error">{errors.last_name}</div>}
                 </div>
                 <div>
-                    <label>Email:</label>
+                    <label htmlFor="email">Email:</label>
                     <input
+                        id="email"
                         type="email"
                         name="email"
                         value={student.email}
@@ -119,8 +122,9 @@ const StudentForm = () => {
                     {errors.email && <div className="error">{errors.email}</div>}
                 </div>
                 <div>
-                    <label>Birthday:</label>
+                    <label htmlFor="birthday">Birthday:</label>
                     <input
+                        id="birthday"
                         type="date"
                         name="birthday"
                         value={student.birthday}
@@ -130,8 +134,9 @@ const StudentForm = () => {
                 </div>
     
                 <div>
-                    <label>Phone Number:</label>
+                    <label htmlFor="phone_number">Phone Number:</label>
                     <input
+                        id="phone_number"
                         type="text"
                         name="phone_number"
                         value={student.phone_number}
