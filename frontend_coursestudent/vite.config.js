@@ -10,4 +10,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),  // Aquí estamos configurando el alias @
     },
   },
+  server: {
+    port: 5173, // Fijar el puerto del frontend
+  },
 });

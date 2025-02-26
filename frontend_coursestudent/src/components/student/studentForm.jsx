@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import API_URLS from '../../Config/config'; 
+
 
 const StudentForm = () => {
     const [notification, setNotification] = useState(null);
@@ -16,7 +18,7 @@ const StudentForm = () => {
 
     useEffect(() => {
         if (id) {
-            fetch(`http://localhost:8002/student/${id}`)
+            fetch(`${API_URLS.students}/student/${id}`)
                 .then(response => response.json())
                 .then(data => setStudent(data))
                 .catch(error => console.error('Error fetching student:', error));
@@ -26,7 +28,7 @@ const StudentForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const method = id ? 'PUT' : 'POST';
-        const url = id ? `http://localhost:8002/student/${id}` : 'http://localhost:8002/student';
+        const url = id ? `${API_URLS.students}/student/${id}` : `${API_URLS.students}/student`;
     
         fetch(url, {
             method,

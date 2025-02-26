@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import API_URLS from '../../Config/config'; 
+
 
 const CourseForm = () => {
     const [course, setCourse] = useState({
@@ -13,7 +15,7 @@ const CourseForm = () => {
 
     useEffect(() => {
         if (id) {
-            fetch(`http://localhost:8003/course/${id}`)
+            fetch(`${API_URLS.courses}/course/${id}`)
                 .then(response => response.json())
                 .then(data => setCourse(data))
                 .catch(error => console.error('Error fetching course:', error));
@@ -23,7 +25,7 @@ const CourseForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const method = id ? 'PUT' : 'POST';
-        const url = id ? `http://localhost:8003/course/${id}` : 'http://localhost:8003/course';
+        const url = id ? `${API_URLS.courses}/course/${id}` : `${API_URLS.courses}/course`;
     
         fetch(url, {
             method,

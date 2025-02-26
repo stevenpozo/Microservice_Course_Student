@@ -5,6 +5,8 @@ import { Table } from "@/components/ui/table";
 import { Select, SelectItem } from "@/components/ui/select";
 import { Modal } from "@/components/ui/modal";
 import { useNavigate } from "react-router-dom"; 
+import API_URLS from '../../Config/config'; 
+
 
 const CourseStudentList = () => {
     const [courses, setCourses] = useState([]);
@@ -20,25 +22,25 @@ const CourseStudentList = () => {
     // Fetch all courses
     useEffect(() => {
         const fetchCourses = async () => {
-            const response = await axios.get("http://localhost:8003/course");
+            const response = await axios.get(`${API_URLS.courses}/course`);
             setCourses(response.data);
         };
         fetchCourses();
     }, []);
 
     const fetchStudentsInCourse = async (courseId) => {
-        const response = await axios.get(`http://localhost:8003/course/${courseId}/students`);
+        const response = await axios.get(`${API_URLS.courses}/course/${courseId}/students`);
         setStudents(response.data);
     };
 
     const fetchNotEnrolledStudents = async (courseId) => {
-        const response = await axios.get(`http://localhost:8003/course/${courseId}/students/not-enrolled`);
+        const response = await axios.get(`${API_URLS.courses}/course/${courseId}/students/not-enrolled`);
         setNotEnrolledStudents(response.data);
     };
 
     const handleAddStudent = async () => {
         if (selectedCourse && studentToAdd) {
-            await axios.post(`http://localhost:8003/course/${selectedCourse}/students/${studentToAdd}`);
+            await axios.post(`${API_URLS.courses}/course/${selectedCourse}/students/${studentToAdd}`);
             setShowModal(false);
             fetchStudentsInCourse(selectedCourse);
         }
@@ -46,13 +48,13 @@ const CourseStudentList = () => {
 
     const handleRemoveStudent = async (studentId) => {
         if (selectedCourse) {
-            await axios.delete(`http://localhost:8003/course/${selectedCourse}/students/${studentId}`);
+            await axios.delete(`${API_URLS.courses}/course/${selectedCourse}/students/${studentId}`);
             fetchStudentsInCourse(selectedCourse);
         }
     };
 
     const handleGoBack = () => {
-        navigate("/"); // Esto te lleva al menú principal
+        navigate("/"); 
     };
 
     return (

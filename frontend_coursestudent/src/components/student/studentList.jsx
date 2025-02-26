@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
+import API_URLS from '../../Config/config'; 
+
 
 const StudentList = () => {
     const [students, setStudents] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:8002/student')
+        fetch(`${API_URLS.students}/student`)
             .then(response => response.json())
             .then(data => setStudents(data))
             .catch(error => console.error('Error fetching students:', error));
     }, []);
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:8002/student/${id}`, {
+        fetch(`${API_URLS.students}/student/${id}`, {
             method: 'DELETE',
         })
             .then(() => {

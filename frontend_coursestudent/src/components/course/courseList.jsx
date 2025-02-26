@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
+import API_URLS from '../../Config/config'; 
+
 
 const CourseList = () => {
     const [courses, setCourses] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:8003/course')
+        fetch(`${API_URLS.courses}/course`)
             .then(response => response.json())
             .then(data => setCourses(data))
             .catch(error => console.error('Error fetching courses:', error));
@@ -16,7 +18,7 @@ const CourseList = () => {
     const handleDelete = (courseId) => {
         const confirmDelete = window.confirm("Are you sure you want to delete this course?");
         if (confirmDelete) {
-            fetch(`http://localhost:8003/course/${courseId}`, {
+            fetch(`${API_URLS.courses}/course/${courseId}`, {
                 method: 'DELETE',
             })
                 .then(() => {
